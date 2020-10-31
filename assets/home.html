@@ -2,14 +2,23 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xenon</title>
     <script src="neel.js"></script> <!-- always include neel.js in your <head>! -->
 </head>
 
 <body>
-    <p>Home page ;O If you see this then Xenon is working!</p>
+    <div class="xenon">
+        <div id="tabctl">
+            <!-- dynamically generated -->
+        </div>
+        <div id="navctl">
+            <!-- go fwd go back stuff here, maybe home btn -->
+            <p>Welcome back, Xenon's here!</p>
+            <input type="search" id="url" class="url" placeholder="type in an URL or an ip address...">
+        </div>
+    </div>
+    <iframe class="xenon-ctx" id="xenon-ctx"></iframe>
 </body>
 <link rel="stylesheet" href="web.css" type="text/css" />
 <script src="home.js"></script>

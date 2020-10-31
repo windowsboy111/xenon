@@ -17,11 +17,17 @@ import times
 let time_startup = getTime()
 
 import neel
+import os
+import httpclient
 
 
 exposeProcs:
     proc postLoad() =
         stdout.write "Xenon started up in " & $((getTime() - time_startup).inMilliseconds) & "ms.\n"
+    proc switchUrl(url: string) =
+        var tmpdir = os.getTempDir()
+        # pass it to curl and dl? (import fetch?)
+
 
 
 startApp(startURL="home.html", assetsDir="./assets/", position=[100,100], size=[1250, 800], chromeFlags= @["--force-dark-mode"], appMode=true)
