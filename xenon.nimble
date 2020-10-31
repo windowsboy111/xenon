@@ -10,4 +10,7 @@ bin           = @["xenon"]
 backend       = "cpp"
 # Dependencies
 
+task assets, "Save assets to cfg folder":
+    exec "nim -r c inst/mvassets.nim"
+
 requires "nim >= 1.2.6", "Neel"
