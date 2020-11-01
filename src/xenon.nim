@@ -19,38 +19,43 @@ import os, strutils, osproc
 const 
     cfgFolder: string = getConfigDir() & "xenon/"
     assetFolder: string = cfgFolder & "assets/"
-    #! C++ might burn your eyes
-    #! 100% incompatible with win32
-    startup_cpp_code: string = """
-        #include "webview.h"
-        int main() {
-            webview::webview w(true, nullptr);
-            w.set_title("Xenon");
-            w.set_size(480, 320, WEBVIEW_HINT_NONE);
-            w.navigate("file://${assetFolder}home.html");
-            w.run();
-            ////w.destroy();
-            return 0;
-        }
-        """.replace("${assetFolder}", assetFolder)
+var startupprog: string = cfgFolder & "startup"
+when defined windows:
+    startupprog += ".exe"
+
 
 
 proc init*(): void =
-    echo "Initlizing... (this will shows up only once)"
+    #! C++ might burn your eyes
+    #! 100% incompatible with win32
+    var startup_cpp_code: string = """
+            #include "webview.h"
+            int main() {
+                webview::webview w(true, nullptr);
+                w.set_title("Xenon");
+                w.set_size(1200, 1000, WEBVIEW_HINT_NONE);
+                w.navigate("file://${assetFolder}home.html");
+                w.run();
+                return 0;
+            }
+            """.replace("${assetFolder}", assetFolder)
+    when defined windows:
+        startup_cpp_code = startup_cpp_code.replace("int main() {", "int WINAPI WinMain(HINSTANCE hInt, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nCmdShow) {")
+    echo "Initlizing... (this will show up only once)"
     writeFile(cfgFolder & "main.cpp", startupcppcode)
-    discard execShellCmd "g++ " & cfgFolder & "main.cpp `pkg-config --cflags --libs gtk+-3.0 webkit2gtk-4.0` -o " & cfgFolder & "startup"
+    when defined windows:
+        discard execShellCmd "g++ " & cfgFolder & "main.cpp -mwindows -L./dll/x64 -lwebview -lWebView2Loader -o " & startupprog
+    else:
+        discard execShellCmd "g++ " & cfgFolder & "main.cpp `pkg-config --cflags --libs gtk+-3.0 webkit2gtk-4.0` -o " & startupprog
     removeFile cfgFolder & "main.cpp"
     echo "home page is at file://${assetFolder}home.html".replace("${assetFolder}", assetFolder)
 
 proc main*(): void =
-    if not existsFile cfgFolder & "startup":
+    if not existsFile startupprog:
         init()
     echo "Starting up..."
-    discard execProcess cfgFolder & "startup"
+    discard execProcess startupprog
 
-
-when defined windows:
-    raise newException(OSError, "100% incompatible with win32 verified!!! :check:")
 
 when isMainModule:
     main()

@@ -5,7 +5,7 @@ let ctxpage = document.getElementById("xenon-ctx");
 
 async function corResize (_event) {
     let height = Number(document.body.style.height);
-    let up_l = Number(url_input.style.width) + 2 + Number(url_input.style.top);
+    let up_l = Number(url_input.style.width) + Number(url_input.style.top);
     ctxpage.setAttribute("style", `position: absolute; height: ${height - up_l}px; min-width: 100%; left: 0px; bottom: 0px; border: none;`); 
 }
 corResize(null);
@@ -26,4 +26,4 @@ document.addEventListener("resize", corResize);
 
 
 // @ts-ignore
-neel.callProc("postLoad");
+// neel.callProc("postLoad");
