@@ -21,7 +21,7 @@ const
     assetFolder: string = cfgFolder & "assets/"
 var startupprog: string = cfgFolder & "startup"
 when defined windows:
-    startupprog += ".exe"
+    startupprog = startupprog & ".exe"
 
 
 
