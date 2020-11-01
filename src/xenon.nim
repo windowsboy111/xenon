@@ -16,12 +16,15 @@
 import os, strutils, osproc
 
 
-const 
-    cfgFolder: string = getConfigDir() & "xenon/"
-    assetFolder: string = cfgFolder & "assets/"
-var startupprog: string = cfgFolder & "startup"
 when defined windows:
-    startupprog = startupprog & ".exe"
+    const 
+        cfgFolder: string = getConfigDir() & "xenon/"
+        assetFolder: string = cfgFolder & "assets/"
+else:
+    const
+        cfgFolder: string = getConfigDir() & "xenon\\"
+        assetFolder: string = cfgFolder & "assets\\"
+const startupprog: string = cfgFolder & "startup.exe"
 
 
 
@@ -44,9 +47,13 @@ proc init*(): void =
     echo "Initlizing... (this will show up only once)"
     writeFile(cfgFolder & "main.cpp", startupcppcode)
     when defined windows:
-        discard execShellCmd "g++ " & cfgFolder & "main.cpp -mwindows -L./dll/x64 -lwebview -lWebView2Loader -o " & startupprog
+        const runcmd = "g++ " & cfgFolder & "main.cpp -mwindows -L./dll/x64 -lwebview -lWebView2Loader -o " & startupprog
     else:
-        discard execShellCmd "g++ " & cfgFolder & "main.cpp `pkg-config --cflags --libs gtk+-3.0 webkit2gtk-4.0` -o " & startupprog
+        const runcmd = "g++ " & cfgFolder & "main.cpp `pkg-config --cflags --libs gtk+-3.0 webkit2gtk-4.0` -o "
+    let compileExitCode = execShellCmd(runcmd)
+    if compileExitCode != 0:
+        echo "[FAILED] g++ compiler exited with exit code " & $compileExitCode & ", see above messages. **stop!!!"
+        quit(2)
     removeFile cfgFolder & "main.cpp"
     echo "home page is at file://${assetFolder}home.html".replace("${assetFolder}", assetFolder)
 
