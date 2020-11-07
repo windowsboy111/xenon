@@ -1,6 +1,6 @@
 let url_input = document.getElementById("url");
-let tabctl = document.getElementById("tabctl");
-let navctl = document.getElementById("navctl");
+// let tabctl = document.getElementById("tabctl");
+// let navctl = document.getElementById("navctl");
 let ctxpage = document.getElementById("xenon-ctx");
 
 async function corResize (_event) {

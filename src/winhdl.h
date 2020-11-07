@@ -14,15 +14,30 @@
  * You should have received a copy of the GNU General Public License
  * along with Xenon.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef Xe_FSOP_H
-#define Xe_FSOP_H
-#include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <string>
+#pragma once
+#ifndef Xe_WINHDL_H
+#define Xe_WINHDL_H
+#include <gtkmm/window.h>
+#include <gtkmm.h>
+#include <webkit2/webkit2.h>
+#include "nav.h"
+#include "utils/fsop.h"
 
-std::string get_homedir();
-std::string get_cfgdir();
-const char *get_path_db();
+namespace windowhdl
+{
+    class MainWin : public Gtk::Window
+    {
+    private:
+        Xe_Navigation::TabsBar tabsBar;
+        Gtk::Widget* w_webview;
+
+    public:
+        MainWin();
+        virtual ~MainWin();
+        void init_webview();
+
+    protected:
+    };
+}
 
 #endif

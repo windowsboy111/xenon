@@ -14,15 +14,26 @@
  * You should have received a copy of the GNU General Public License
  * along with Xenon.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef Xe_FSOP_H
-#define Xe_FSOP_H
-#include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <string>
+#pragma once
+#ifndef Xe_CONSOLE_H
+#define Xe_CONSOLE_H
+#include <iostream>
+#include "colors.h"
 
-std::string get_homedir();
-std::string get_cfgdir();
-const char *get_path_db();
+namespace Console
+{
+    void out(std::string msg) {
+        std::cout << Colors::reset << "[" << Colors::blue << " INFO " << Colors::reset << "]\t"
+            << msg << std::endl;
+    }
+    void out(std::string msg, std::string type) {
+        std::cout << Colors::reset << "[" << Colors::blue << type << Colors::reset << "]\t"
+            << msg << std::endl;
+    }
+    void err(std::string msg, std::string type) {
+        std::cerr << Colors::reset << "[" << Colors::red << type << Colors::reset << "]\t"
+            << msg << std::endl;
+    }
+} // namespace console
 
 #endif

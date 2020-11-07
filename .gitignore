@@ -1,3 +1,2 @@
-nimcache/
-nimblecache/
-htmldocs/
+.kdev4
+.vscode

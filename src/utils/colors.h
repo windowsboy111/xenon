@@ -14,15 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with Xenon.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef Xe_FSOP_H
-#define Xe_FSOP_H
-#include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
+#pragma once
+#ifndef Xe_COLORS_H
+#define Xe_COLORS_H
+#include <iostream>
 #include <string>
-
-std::string get_homedir();
-std::string get_cfgdir();
-const char *get_path_db();
-
+namespace Colors {
+    std::string red = "\x1b[31m";
+    std::string red2 = "\x1b[91m";
+    std::string reset = "\x1b[0m";
+    std::string blue = "\x1b[34m";
+}
 #endif

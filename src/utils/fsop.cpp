@@ -14,15 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with Xenon.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef Xe_FSOP_H
-#define Xe_FSOP_H
-#include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <string>
-
-std::string get_homedir();
-std::string get_cfgdir();
-const char *get_path_db();
-
-#endif
+#include "fsop.h"
+std::string get_homedir()
+{
+    return std::string(getpwuid(getuid())->pw_dir);
+};
+std::string get_cfgdir()
+{
+    return get_homedir() + "/.config/xenon";
+};
+const char *get_path_db()
+{
+    return (get_cfgdir() + "/data.db").c_str();
+};

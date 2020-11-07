@@ -14,15 +14,36 @@
  * You should have received a copy of the GNU General Public License
  * along with Xenon.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef Xe_FSOP_H
-#define Xe_FSOP_H
-#include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <string>
+#pragma once
+#ifndef Xe_NAVCTL_H
+#define Xe_NAVCTL_H
 
-std::string get_homedir();
-std::string get_cfgdir();
-const char *get_path_db();
+// #include <sqlite3.h>
+#include <gtkmm/box.h>
+#include <gtkmm/button.h>
+#include "utils/fsop.h"
+// #include "utils/dbctl.h"
+#include <filesystem>
+
+namespace Xe_Navigation
+{
+    class Tab : public Gtk::Button
+    {
+    public:
+        int pos;
+        std::string url;
+        std::string title;
+        Tab(int pos, std::string url, std::string title);
+        ~Tab();
+    };
+    class TabsBar : public Gtk::Box
+    {
+    private:
+        std::vector<Tab> tabs;
+    public:
+        TabsBar(/* args */);
+        ~TabsBar();
+    };
+} // namespace Xe_Navigation
 
 #endif
