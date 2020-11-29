@@ -35,3 +35,12 @@ html body iframe.xenon-ctx {
     left: 0px;
     border: none;
 }
+
+div.xenon div.tabctl {
+    position: absolute;
+    top: 0%;
+    color: gray;
+}
+div.xenon div.tabctl button {
+    size: 250, 25;
+}

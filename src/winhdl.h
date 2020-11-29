@@ -20,7 +20,7 @@
 #include <gtkmm/window.h>
 #include <gtkmm.h>
 #include <webkit2/webkit2.h>
-#include "nav.h"
+// #include "nav.h"
 #include "utils/fsop.h"
 
 namespace windowhdl
@@ -28,7 +28,7 @@ namespace windowhdl
     class MainWin : public Gtk::Window
     {
     private:
-        Xe_Navigation::TabsBar tabsBar;
+        // Xe_Navigation::TabsBar tabsBar;
         Gtk::Widget* w_webview;
 
     public:
@@ -36,7 +36,7 @@ namespace windowhdl
         virtual ~MainWin();
         void init_webview();
 
-    protected:
+    // protected:
     };
 }
 

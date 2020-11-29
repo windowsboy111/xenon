@@ -13,4 +13,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Xenon.  If not, see <https://www.gnu.org/licenses/>.
 
-g++ `pkg-config --libs webkit2gtk-4.0` `pkg-config --cflags webkit2gtk-4.0` `pkg-config --cflags gtkmm-3.0` `pkg-config --libs gtkmm-3.0` -std=c++17 src/{xenon,nav,winhdl,utils/fsop}.cpp -o xenon
+# g++ `pkg-config --libs webkit2gtk-4.0` `pkg-config --cflags webkit2gtk-4.0` `pkg-config --cflags gtkmm-3.0` `pkg-config --libs gtkmm-3.0` -std=c++17 src/{xenon,nav,winhdl,utils/{fsop,colors,console}}.cpp -o xenon -g
+g++ `pkg-config --libs webkit2gtk-4.0` `pkg-config --cflags webkit2gtk-4.0` `pkg-config --cflags gtkmm-3.0` `pkg-config --libs gtkmm-3.0` -std=c++17 -g -c src/winhdl.cpp
+# g++ `pkg-config --libs webkit2gtk-4.0` `pkg-config --cflags webkit2gtk-4.0` `pkg-config --cflags gtkmm-3.0` `pkg-config --libs gtkmm-3.0` -std=c++17 -g -c src/nav.cpp
+# g++ `pkg-config --libs webkit2gtk-4.0` `pkg-config --cflags webkit2gtk-4.0` `pkg-config --cflags gtkmm-3.0` `pkg-config --libs gtkmm-3.0` -std=c++17 -g -c src/xenon.cpp
+g++ `pkg-config --libs webkit2gtk-4.0` `pkg-config --cflags webkit2gtk-4.0` `pkg-config --cflags gtkmm-3.0` `pkg-config --libs gtkmm-3.0` -std=c++17 -g -o xenon *.o

@@ -17,12 +17,11 @@
 #pragma once
 #ifndef Xe_COLORS_H
 #define Xe_COLORS_H
-#include <iostream>
 #include <string>
 namespace Colors {
-    std::string red = "\x1b[31m";
-    std::string red2 = "\x1b[91m";
-    std::string reset = "\x1b[0m";
-    std::string blue = "\x1b[34m";
+    std::string get_red();
+    std::string get_red2();
+    std::string get_reset();
+    std::string get_blue();
 }
 #endif

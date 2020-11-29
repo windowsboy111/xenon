@@ -21,25 +21,26 @@
 // #include <sqlite3.h>
 #include <gtkmm/box.h>
 #include <gtkmm/button.h>
+#include <gtkmm/label.h>
 #include "utils/fsop.h"
+#include "utils/console.h"
 // #include "utils/dbctl.h"
 #include <filesystem>
 
 namespace Xe_Navigation
 {
-    class Tab : public Gtk::Button
+    class Tab : public Gtk::Label
     {
     public:
         int pos;
         std::string url;
         std::string title;
         Tab(int pos, std::string url, std::string title);
+        Tab();
         ~Tab();
     };
     class TabsBar : public Gtk::Box
     {
-    private:
-        std::vector<Tab> tabs;
     public:
         TabsBar(/* args */);
         ~TabsBar();

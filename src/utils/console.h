@@ -17,23 +17,13 @@
 #pragma once
 #ifndef Xe_CONSOLE_H
 #define Xe_CONSOLE_H
-#include <iostream>
-#include "colors.h"
+#include <string>
 
 namespace Console
 {
-    void out(std::string msg) {
-        std::cout << Colors::reset << "[" << Colors::blue << " INFO " << Colors::reset << "]\t"
-            << msg << std::endl;
-    }
-    void out(std::string msg, std::string type) {
-        std::cout << Colors::reset << "[" << Colors::blue << type << Colors::reset << "]\t"
-            << msg << std::endl;
-    }
-    void err(std::string msg, std::string type) {
-        std::cerr << Colors::reset << "[" << Colors::red << type << Colors::reset << "]\t"
-            << msg << std::endl;
-    }
+    void out(std::string msg);
+    void out(std::string msg, std::string type);
+    void err(std::string msg, std::string type);
 } // namespace console
 
 #endif

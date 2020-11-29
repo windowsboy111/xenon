@@ -18,10 +18,11 @@
 
 windowhdl::MainWin::MainWin() : Gtk::Window()
 {
-    this->set_default_size(1600, 900);
-    this->init_webview();
-    this->add(this->tabsBar);
-    this->show_all();
+    set_default_size(1600, 900);
+    init_webview();
+    // tabsBar.show_now();
+    // add(tabsBar);
+    show_all();
 }
 
 void windowhdl::MainWin::init_webview()
@@ -34,12 +35,14 @@ void windowhdl::MainWin::init_webview()
      * Glib::wrap( GTK_WIDGET( one ) ) -> convert GtkWidget to Gtk::Widget (two->three)
      */
     Gtk::Widget *three = Glib::wrap(GTK_WIDGET(one));
-
-    this->add(*three);
-    this->w_webview = three;
+    add(*three);
+    w_webview = three;
+    three->set_size_request(1600, 800);
+    three->show_all();
     webkit_web_view_load_uri(one, ("file://" + get_cfgdir() + "/assets/home.html").c_str());
 }
 
 windowhdl::MainWin::~MainWin()
 {
+    delete w_webview;
 }
