@@ -8,13 +8,12 @@
 
 <body>
     <div class="xenon">
-        <div id="tabctl" class="tabctl">
-<!-- tabs will be automated by js -->
-        </div>
-        <div id="navctl">
+        <div id="tabctl" class="tabctl"></div>
+        <div id="navctl" class="navctl">
             <!-- go fwd go back stuff here, maybe home btn -->
-            <p>Welcome back, Xenon's here!</p>
             <input type="search" id="url" class="url" placeholder="type in an URL or an ip address...">
+            <button onclick="tabCtl.newTab()" id="newTab" class="newTab">+</button>
+            <button onclick="tabCtl.rmTab()" id="rmTab" class="rmTab">-</button>
         </div>
     </div>
     <iframe class="xenon-ctx" id="xenon-ctx"></iframe>

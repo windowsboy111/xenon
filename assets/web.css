@@ -30,17 +30,45 @@ div.xenon input.url {
 
 html body iframe.xenon-ctx {
     position: absolute;
-    min-height: 90%;
+    bottom: 0px;
+    min-height: 85%;
     min-width: 100%;
     left: 0px;
     border: none;
 }
 
 div.xenon div.tabctl {
-    position: absolute;
+    position: fixed;
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
     top: 0%;
     color: gray;
+    /* width: 100%; */
+}
+div.tabctl button.but-activated {
+    background-color: coral;
 }
 div.xenon div.tabctl button {
-    size: 250, 25;
+    position: relative;
+    border: 1 aqua;
+    height: 3em;
+    /* width: auto; */
+    background-color: cadetblue;
+}
+div.navctl button.newTab {
+    position: absolute;
+    right: 1px;
+    border: 1 white;
+    height: 3em;
+    width: 3em;
+    background-color: orangered;
+}
+div.navctl button.rmTab {
+    position: absolute;
+    right: 1px;
+    top: 3em;
+    border: 1 white;
+    height: 3em;
+    width: 3em;
+    background-color: orangered;
 }
